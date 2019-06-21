@@ -5,9 +5,9 @@ import dummy.com.example.dummy.domain.pojo.CustomerPojo;
 import dummy.com.example.dummy.framework.entity.customer.Customer;
 import dummy.com.example.dummy.framework.entity.product.Product;
 
-public interface CustomerHandler {
+public interface ICustomerService {
 
-	public List<Product> getCustomerProducts(CustomerPojo customer);
+	public List<Product> getCustomerProducts(long customer);
 	
 	public Customer addNewCustomer(CustomerPojo customer);
 }

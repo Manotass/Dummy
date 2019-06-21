@@ -15,7 +15,7 @@ public class Product {
 	@Column
 	private String name;
 	@Column
-	private ProductCategory category; 
+	private ProductCategory category;
 	@Column
 	private ProductType type;
 	@Column
