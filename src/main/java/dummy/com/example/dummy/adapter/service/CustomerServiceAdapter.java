@@ -1,28 +1,31 @@
 package dummy.com.example.dummy.adapter.service;
 
-import dummy.com.example.dummy.framework.entity.customer.Customer;
-import dummy.com.example.dummy.framework.entity.product.Product;
-import dummy.com.example.dummy.port.ICustomerRepositoryPort;
-import dummy.com.example.dummy.framework.repository.CustomerRepository;
-import dummy.com.example.dummy.framework.repository.ProducrRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
-public class CustomerServiceAdapter implements ICustomerRepositoryPort {
+import dummy.com.example.dummy.port.ICustomerServicePort;
+import org.springframework.beans.factory.annotation.Autowired;
+import dummy.com.example.dummy.domain.pojo.CustomerPojo;
+import dummy.com.example.dummy.port.ICustomerRepositoryPort;
+import dummy.com.example.dummy.framework.entity.customer.Customer;
+import dummy.com.example.dummy.framework.entity.product.Product;
+import dummy.com.example.dummy.framework.mapper.ICustomerMapper;
 
-    @Autowired
-    private ProducrRepository producrRepository;
-    @Autowired
-    private CustomerRepository customerRepository;
 
-    public List<Product> getCustomerProducts(long customerId) {
+public class CustomerServiceAdapter implements ICustomerServicePort {
 
-        return producrRepository.findAllByCustomerId(customerId);
-    }
+	@Autowired
+	private ICustomerRepositoryPort customerRepositoryPort;
 
-    public Customer addNewCustomer(Customer customer) {
+	@Autowired
+	private ICustomerMapper customerMapper;
 
-        return customerRepository.save(customer);
-    }
+	public List<Product> getCustomerProducts(long customerId) {
+		return customerRepositoryPort.getCustomerProducts(customerId);
+	}
+
+	public Customer addNewCustomer(CustomerPojo customer) {
+		return customerRepositoryPort
+				.addNewCustomer(customerMapper.customerPojoToCustomerEntity(customer));
+	}
+
 }

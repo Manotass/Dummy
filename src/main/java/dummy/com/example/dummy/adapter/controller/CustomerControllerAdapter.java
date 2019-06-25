@@ -3,7 +3,7 @@ package dummy.com.example.dummy.adapter.controller;
 import java.util.List;
 
 import dummy.com.example.dummy.port.ICustomerControllerPort;
-import dummy.com.example.dummy.service.CustomerService;
+import dummy.com.example.dummy.port.ICustomerServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,7 +20,7 @@ import dummy.com.example.dummy.framework.entity.product.Product;
 public class CustomerControllerAdapter implements ICustomerControllerPort {
 
 	@Autowired
-	private CustomerService customerService;
+	private ICustomerServicePort customerService;
 
 	@GetMapping
 	public ResponseEntity<List<Product>> customerProducts(@RequestBody long customerId) {
